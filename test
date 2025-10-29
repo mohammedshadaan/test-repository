@@ -1,0 +1,14 @@
+import boto3
+import json
+
+client = boto3.client('secretsmanager')
+
+response = client.update_secret(
+    SecretId='MySecretName',
+    SecretString=json.dumps({
+        'username': 'newUser',
+        'password': 'newPassword'
+    })
+)
+
+print("Secret updated:", response['ARN'])
